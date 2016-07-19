@@ -2,6 +2,8 @@
 
 #include <openvr.h>
 
+#pragma comment(lib, "lib\\win32\\openvr_api.lib")
+
 class vrMain {
 private:
 	

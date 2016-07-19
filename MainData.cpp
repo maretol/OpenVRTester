@@ -6,10 +6,10 @@ bool vrMain::Init() {
 	hmd = vr::VR_Init(&eError, vr::VRApplication_Scene);
 
 	if (eError != vr::VRInitError_None) {
-		printf("error");
+		printf("error\n");
 		return false;
 	}
-
+	printf("success\n");
 	return true;
 }
 
