@@ -11,6 +11,7 @@ using namespace std;
 class vrMain {
 private:
 	//------------- メソッド ----------------
+	string GetTrackedDeviceString(vr::TrackedDeviceIndex_t unDevice, vr::TrackedDeviceProperty prop);
 	string GetTrackedDeviceString(vr::TrackedDeviceIndex_t unDevice, vr::TrackedDeviceProperty prop, vr::TrackedPropertyError *pError);
 	
 	//-------------- パラメータ -------------

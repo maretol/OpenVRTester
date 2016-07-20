@@ -65,7 +65,11 @@ void vrMain::ProcessVREvent(const vr::VREvent_t & event) {
 	}
 }
 
-string vrMain::GetTrackedDeviceString(vr::TrackedDeviceIndex_t unDevice, vr::TrackedDeviceProperty prop, vr::TrackedPropertyError *pError = NULL) {
+string vrMain::GetTrackedDeviceString(vr::TrackedDeviceIndex_t unDevice, vr::TrackedDeviceProperty prop) {
+	return GetTrackedDeviceString(unDevice, prop, NULL);
+}
+
+string vrMain::GetTrackedDeviceString(vr::TrackedDeviceIndex_t unDevice, vr::TrackedDeviceProperty prop, vr::TrackedPropertyError *pError) {
 	uint32_t unRequiredBufferLen = hmd->GetStringTrackedDeviceProperty(unDevice, prop, NULL, 0, pError);
 	if (unRequiredBufferLen == 0) {
 		return "";
