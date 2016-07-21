@@ -16,8 +16,10 @@ private:
 	string GetTrackedDeviceString(vr::TrackedDeviceIndex_t unDevice, vr::TrackedDeviceProperty prop, vr::TrackedPropertyError *pError);
 	
 	//-------------- パラメータ -------------
-	vector<RenderModel *> m_vecRenderModel;
+	bool m_rbShowTrackedDevice[vr::k_unMaxTrackedDeviceCount];
 
+	vector<RenderModel *> m_vecRenderModel;
+	RenderModel *m_rTrackedDeviceToRenderModel[vr::k_unMaxTrackedDeviceCount];
 protected:
 	//------------- メソッド ----------------
 

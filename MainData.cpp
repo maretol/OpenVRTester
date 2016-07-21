@@ -43,9 +43,15 @@ void vrMain::SetupRenderModelForTrackedDevice(vr::TrackedDeviceIndex_t unTrackeD
 	}
 
 	string renderModelName = GetTrackedDeviceString(unTrackeDeviceIndex, vr::Prop_RenderModelName_String);
-	// ‚±‚±‚Å
 	RenderModel *renderModel = FindOrLoadRenderModel(renderModelName.c_str());
-	// ŽÀ‘•’†
+	
+	if (renderModel) {
+		string sTrackingSystemName = GetTrackedDeviceString(unTrackeDeviceIndex, vr::Prop_RenderModelName_String);
+		printf("Unable to load render model for tracked device %d ( %s.%s )", unTrackeDeviceIndex, sTrackingSystemName.c_str(), renderModelName.c_str());
+	} else {
+		m_rTrackedDeviceToRenderModel[unTrackeDeviceIndex] = renderModel;
+		m_rbShowTrackedDevice[unTrackeDeviceIndex] = true;
+	}
 
 }
 
