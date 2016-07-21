@@ -29,9 +29,18 @@ void vrMain::MainLoop() {
 
 bool vrMain::HandleInput() {
 
+	// SampleはここでSDLのイベント処理を行っている
+
 	vr::VREvent_t event;
 	while (hmd->PollNextEvent(&event, sizeof(event))) {
 		ProcessVREvent(event);
+	}
+
+	for (vr::TrackedDeviceIndex_t unDevice = 0; unDevice < vr::k_unMaxTrackedDeviceCount; unDevice++) {
+		vr::VRControllerState_t state;
+		if (hmd->GetControllerState(unDevice, &state)) {
+			m_rbShowTrackedDevice[unDevice] = state.ulButtonPressed == 0;
+		}
 	}
 
 	return false;
@@ -55,6 +64,7 @@ void vrMain::SetupRenderModelForTrackedDevice(vr::TrackedDeviceIndex_t unTrackeD
 
 }
 
+// Processes a single VR event : VRに関するイベント処理?
 void vrMain::ProcessVREvent(const vr::VREvent_t & event) {
 
 	switch (event.eventType) {
