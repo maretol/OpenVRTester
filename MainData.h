@@ -2,6 +2,7 @@
 
 #include <openvr.h>
 #include <string>
+#include <vector>
 #include "RenderModel.h"
 
 using namespace std;
@@ -15,7 +16,7 @@ private:
 	string GetTrackedDeviceString(vr::TrackedDeviceIndex_t unDevice, vr::TrackedDeviceProperty prop, vr::TrackedPropertyError *pError);
 	
 	//-------------- パラメータ -------------
-
+	vector<RenderModel *> m_vecRenderModel;
 
 protected:
 	//------------- メソッド ----------------

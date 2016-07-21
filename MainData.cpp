@@ -44,7 +44,7 @@ void vrMain::SetupRenderModelForTrackedDevice(vr::TrackedDeviceIndex_t unTrackeD
 
 	string renderModelName = GetTrackedDeviceString(unTrackeDeviceIndex, vr::Prop_RenderModelName_String);
 	// ここで
-	// CGLRenderModel *renderModel = FindOrLoadRenderModel(renderModelName.c_str()) を呼び出している
+	RenderModel *renderModel = FindOrLoadRenderModel(renderModelName.c_str());
 	// 実装中
 
 }
@@ -63,6 +63,56 @@ void vrMain::ProcessVREvent(const vr::VREvent_t & event) {
 			printf("Device %u updated.\n", event.trackedDeviceIndex);
 			break;
 	}
+}
+
+RenderModel *vrMain::FindOrLoadRenderModel(const char *pRenderModelName) {
+	RenderModel *pRenderModel = NULL;
+	for (vector<RenderModel *>::iterator i = m_vecRenderModel.begin(); i != m_vecRenderModel.end(); i++) {
+		if (!stricmp((*i)->getName().c_str(), pRenderModelName)) {
+			pRenderModel = *i;
+			break;
+		}
+	}
+
+	// もしモデルが見つからないときにモデルをロードする? (Sampleより
+	if (!pRenderModel) {
+		vr::RenderModel_t *pModel;
+		vr::EVRRenderModelError error;
+		while (true) {
+			error = vr::VRRenderModels()->LoadRenderModel_Async(pRenderModelName, &pModel);
+			if (error != vr::VRRenderModelError_Loading) {
+				break;
+			}
+
+			::_sleep(1);
+		}
+
+		if (error != vr::VRRenderModelError_None) {
+			printf("Unable to load render model %s - %s\n", pRenderModelName, vr::VRRenderModels()->GetRenderModelErrorNameFromEnum(error));
+			return NULL;
+		}
+
+		vr::RenderModel_TextureMap_t *pTexture;
+		while (true) {
+			error = vr::VRRenderModels()->LoadTexture_Async(pModel->diffuseTextureId, &pTexture);
+			if (error != vr::VRRenderModelError_Loading) {
+				break;
+			}
+
+			::_sleep(1);
+		}
+
+		if (error != vr::VRRenderModelError_None) {
+			printf("Unable to load render texture id : %d for render model %s\n", pModel->diffuseTextureId, pRenderModelName);
+			vr::VRRenderModels()->FreeRenderModel(pModel);
+			return NULL;
+		} else {
+			m_vecRenderModel.push_back(pRenderModel);
+		}
+		vr::VRRenderModels()->FreeRenderModel(pModel);
+		vr::VRRenderModels()->FreeTexture(pTexture);
+	}
+	return pRenderModel;
 }
 
 string vrMain::GetTrackedDeviceString(vr::TrackedDeviceIndex_t unDevice, vr::TrackedDeviceProperty prop) {
