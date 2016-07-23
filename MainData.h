@@ -1,6 +1,7 @@
 #pragma once
 
 #include <openvr.h>
+#include <DxLib.h>
 #include <string>
 #include <vector>
 #include "RenderModel.h"
@@ -30,6 +31,7 @@ protected:
 public:
 	//------------- ÉÅÉ\ÉbÉh ----------------
 	bool Init();
+	bool DxInit();
 	void Shutdown();
 	void MainLoop();
 

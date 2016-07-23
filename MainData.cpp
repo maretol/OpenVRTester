@@ -11,6 +11,24 @@ bool vrMain::Init() {
 		return false;
 	}
 	printf("success\n");
+
+	if (!DxInit()) {
+		printf("%s - Unable to initialize DirectX\n", __FUNCTION__);
+		return false;
+	}
+	return true;
+}
+
+// DxLib の初期化。なにか必要なら書き足す
+bool vrMain::DxInit() {
+	// アンチエイリアスを有効化する場合はここで宣言する ( Dxlibの都合初期化前に宣言する
+
+	if (DxLib_Init() == -1) {
+		return false;
+	}
+	
+	// フルスクリーンモードにすべき?
+
 	return true;
 }
 
@@ -79,7 +97,13 @@ void vrMain::RenderFrame() {
 	}
 }
 
-void vrMain::RenderStereoTargets() {}
+void vrMain::RenderStereoTargets() {
+	// 背景色決定
+	SetBackgroundColor((int)255*0.15, (int)255*0.15, (int)255*0.15);
+	
+	// フレームバッファをバインドするあたり?だけどとりあえずここまで
+	// TODO : ここの実装
+}
 
 void vrMain::RenderDistortion() {}
 
