@@ -22,8 +22,12 @@ void vrMain::Shutdown() {
 void vrMain::MainLoop() {
 	bool quit = false;
 
+	// Sample では SDL の処理。テクスチャ読み込みなど
+
 	while (!quit) {
 		quit = true;
+
+		RenderFrame();
 	}
 }
 
@@ -63,6 +67,23 @@ void vrMain::SetupRenderModelForTrackedDevice(vr::TrackedDeviceIndex_t unTrackeD
 	}
 
 }
+
+void vrMain::RenderFrame() {
+	if (hmd) {
+		// Sample ではここでコントローラの表示? 以下のメソッド実行
+		// DrawControllers();
+		RenderStereoTargets();
+		RenderDistortion(); // Distortion : 歪みという意味。ここで歪める?
+
+		// ここで描画済みの画面をテクスチャ化してレンズの歪みに合わせた加工をしている?
+	}
+}
+
+void vrMain::RenderStereoTargets() {}
+
+void vrMain::RenderDistortion() {}
+
+void vrMain::RenderScene(vr::Hmd_Eye eye){}
 
 // Processes a single VR event : VRに関するイベント処理?
 void vrMain::ProcessVREvent(const vr::VREvent_t & event) {

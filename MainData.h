@@ -35,6 +35,11 @@ public:
 
 	bool HandleInput();
 	void SetupRenderModelForTrackedDevice(vr::TrackedDeviceIndex_t unTrackeDeviceIndex);
+	void RenderFrame();
+
+	void RenderStereoTargets();
+	void RenderDistortion();
+	void RenderScene(vr::Hmd_Eye eye);
 	
 	void ProcessVREvent(const vr::VREvent_t &event);
 
