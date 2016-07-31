@@ -29,6 +29,11 @@ bool vrMain::DxInit() {
 	
 	// フルスクリーンモードにすべき?
 
+	// シェーダプログラム実行
+	if (!CreateAllSheaders()) {
+		return false;
+	}
+
 	return true;
 }
 
@@ -101,11 +106,15 @@ void vrMain::RenderStereoTargets() {
 	// 背景色決定
 	SetBackgroundColor((int)255*0.15, (int)255*0.15, (int)255*0.15);
 	
-	// フレームバッファをバインドするあたり?だけどとりあえずここまで
+	// フレームバッファをバインドする
+	// DxLib(or DirectX API) での実装を考える
 	// TODO : ここの実装
 }
 
-void vrMain::RenderDistortion() {}
+void vrMain::RenderDistortion() {
+
+
+}
 
 void vrMain::RenderScene(vr::Hmd_Eye eye){}
 
@@ -174,6 +183,13 @@ RenderModel *vrMain::FindOrLoadRenderModel(const char *pRenderModelName) {
 		vr::VRRenderModels()->FreeTexture(pTexture);
 	}
 	return pRenderModel;
+}
+
+// シェーダ関数とそれの格納
+// TODO : パラメータの作成とそれへの代入
+// TODO : DirectX のシェーダの記述 (HLSL あたりが順当と思われる)
+bool vrMain::CreateAllSheaders() {
+	return false;
 }
 
 string vrMain::GetTrackedDeviceString(vr::TrackedDeviceIndex_t unDevice, vr::TrackedDeviceProperty prop) {
