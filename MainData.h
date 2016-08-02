@@ -19,8 +19,21 @@ private:
 	//-------------- パラメータ -------------
 	bool m_rbShowTrackedDevice[vr::k_unMaxTrackedDeviceCount];
 
+	bool m_Vblank;
+
 	vector<RenderModel *> m_vecRenderModel;
 	RenderModel *m_rTrackedDeviceToRenderModel[vr::k_unMaxTrackedDeviceCount];
+
+	struct FramebufferDesc {
+		u_int m_DepthBufferId;
+		u_int m_RenderTextureId;
+		u_int m_RenderFramebufferId;
+		u_int m_ResolveTextureId;
+		u_int m_ResolveFramebufferId;
+	};
+	FramebufferDesc leftEyeDesc;
+	FramebufferDesc rightEyeDesc;
+
 protected:
 	//------------- メソッド ----------------
 
@@ -29,6 +42,7 @@ protected:
 
 
 public:
+	vrMain();
 	//------------- メソッド ----------------
 	bool Init();
 	bool DxInit();

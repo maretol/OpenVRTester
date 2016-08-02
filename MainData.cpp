@@ -2,6 +2,10 @@
 #include <stdio.h>
 
 
+vrMain::vrMain() : m_Vblank(false){
+
+}
+
 bool vrMain::Init() {
 	vr::EVRInitError eError = vr::VRInitError_None;
 	hmd = vr::VR_Init(&eError, vr::VRApplication_Scene);
@@ -96,9 +100,12 @@ void vrMain::RenderFrame() {
 		// Sample ではここでコントローラの表示? 以下のメソッド実行
 		// DrawControllers();
 		RenderStereoTargets();
-		RenderDistortion(); // Distortion : 歪みという意味。ここで歪める?
+		RenderDistortion(); // Distortion : 歪みという意味。ここで歪みのShaderを使う TODO : シェーダを勉強してからの実装
 
-		// ここで描画済みの画面をテクスチャ化してレンズの歪みに合わせた加工をしている?
+		vr::Texture_t leftEyeTexture = {(void*)leftEyeDesc.m_ResolveTextureId, vr::API_DirectX, vr::ColorSpace_Gamma};
+		vr::VRCompositor()->Submit(vr::Eye_Left, &leftEyeTexture);
+		vr::Texture_t rightEyeTexture = {(void*)rightEyeDesc.m_ResolveTextureId, vr::API_DirectX, vr::ColorSpace_Gamma};
+		vr::VRCompositor()->Submit(vr::Eye_Right, &rightEyeTexture);
 	}
 }
 
