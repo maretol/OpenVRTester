@@ -30,7 +30,7 @@ bool vrMain::DxInit() {
 	// フルスクリーンモードにすべき?
 
 	// シェーダプログラム実行
-	if (!CreateAllSheaders()) {
+	if (!CreateAllShaders()) {
 		return false;
 	}
 
@@ -188,7 +188,7 @@ RenderModel *vrMain::FindOrLoadRenderModel(const char *pRenderModelName) {
 // シェーダ関数とそれの格納
 // TODO : パラメータの作成とそれへの代入
 // TODO : DirectX のシェーダの記述 (HLSL あたりが順当と思われる)
-bool vrMain::CreateAllSheaders() {
+bool vrMain::CreateAllShaders() {
 	return false;
 }
 

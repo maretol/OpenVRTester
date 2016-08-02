@@ -47,6 +47,6 @@ public:
 
 	RenderModel *FindOrLoadRenderModel(const char *pRenderModelName);
 
-	bool CreateAllSheaders();
+	bool CreateAllShaders();
 	//-------------- ƒpƒ‰ƒ[ƒ^ -------------
 };
