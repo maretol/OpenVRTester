@@ -14,12 +14,13 @@ bool vrMain::Init() {
 		printf("error\n");
 		return false;
 	}
-	printf("success\n");
+	printf("vrInit success\n");
 
 	if (!DxInit()) {
 		printf("%s - Unable to initialize DirectX\n", __FUNCTION__);
 		return false;
 	}
+	printf("DirectX init success\n");
 	return true;
 }
 
@@ -107,6 +108,11 @@ void vrMain::RenderFrame() {
 		vr::Texture_t rightEyeTexture = {(void*)rightEyeDesc.m_ResolveTextureId, vr::API_DirectX, vr::ColorSpace_Gamma};
 		vr::VRCompositor()->Submit(vr::Eye_Right, &rightEyeTexture);
 	}
+	
+	// 再描画処理
+	// Sample では glFlush/glFinish を呼び出す(条件あり)
+
+	UpdateHMDMatrixPose();
 }
 
 void vrMain::RenderStereoTargets() {
@@ -124,6 +130,15 @@ void vrMain::RenderDistortion() {
 }
 
 void vrMain::RenderScene(vr::Hmd_Eye eye){}
+
+void vrMain::UpdateHMDMatrixPose() {
+	if (hmd) {
+		return;
+	}
+
+	// TODO : 以下の実装
+	vr::VRCompositor()->WaitGetPoses(m_rTrackedDevicePose, vr::k_unMaxTrackedDeviceCount, NULL, 0);
+}
 
 // Processes a single VR event : VRに関するイベント処理?
 void vrMain::ProcessVREvent(const vr::VREvent_t & event) {

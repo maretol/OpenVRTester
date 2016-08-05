@@ -21,6 +21,8 @@ private:
 
 	bool m_Vblank;
 
+	vr::TrackedDevicePose_t m_rTrackedDevicePose[vr::k_unMaxTrackedDeviceCount];
+
 	vector<RenderModel *> m_vecRenderModel;
 	RenderModel *m_rTrackedDeviceToRenderModel[vr::k_unMaxTrackedDeviceCount];
 
@@ -57,6 +59,8 @@ public:
 	void RenderDistortion();
 	void RenderScene(vr::Hmd_Eye eye);
 	
+	void UpdateHMDMatrixPose();
+
 	void ProcessVREvent(const vr::VREvent_t &event);
 
 	RenderModel *FindOrLoadRenderModel(const char *pRenderModelName);
