@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 
-vrMain::vrMain() : m_Vblank(false){
+vrMain::vrMain() : m_Vblank(false),m_ValidPoseCount(0),m_PoseClasses(""){
 
 }
 
@@ -139,7 +139,14 @@ void vrMain::UpdateHMDMatrixPose() {
 	// TODO : WaitGetPoses ‚Ì—‰ð
 	vr::VRCompositor()->WaitGetPoses(m_rTrackedDevicePose, vr::k_unMaxTrackedDeviceCount, NULL, 0);
 
-	
+	m_ValidPoseCount = 0;
+	m_PoseClasses = "";
+	for (int nDevice = 0; nDevice < vr::k_unMaxTrackedDeviceCount; ++nDevice) {
+		if (m_rTrackedDevicePose[nDevice].bPoseIsValid) {
+			m_ValidPoseCount++;
+			// TODO : ŽÀ‘•‚Æ—‰ð
+		}
+	}
 }
 
 // Processes a single VR event : VR‚ÉŠÖ‚·‚éƒCƒxƒ“ƒgˆ—?

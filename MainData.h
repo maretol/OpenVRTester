@@ -27,6 +27,11 @@ private:
 	vector<RenderModel *> m_vecRenderModel;
 	RenderModel *m_rTrackedDeviceToRenderModel[vr::k_unMaxTrackedDeviceCount];
 
+	// グラフィック関係 (後々GL->DXで書き換えが必要かもしれない
+	// 現状そのまま
+	int m_ValidPoseCount;
+	string m_PoseClasses;
+
 	struct FramebufferDesc {
 		u_int m_DepthBufferId;
 		u_int m_RenderTextureId;
