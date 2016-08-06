@@ -136,8 +136,10 @@ void vrMain::UpdateHMDMatrixPose() {
 		return;
 	}
 
-	// TODO : ˆÈ‰º‚ÌÀ‘•
+	// TODO : WaitGetPoses ‚Ì—‰ğ
 	vr::VRCompositor()->WaitGetPoses(m_rTrackedDevicePose, vr::k_unMaxTrackedDeviceCount, NULL, 0);
+
+	
 }
 
 // Processes a single VR event : VR‚ÉŠÖ‚·‚éƒCƒxƒ“ƒgˆ—?

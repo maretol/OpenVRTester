@@ -13,6 +13,7 @@ using namespace std;
 class vrMain {
 private:
 	//------------- メソッド ----------------
+	// エラー処理などで使用
 	string GetTrackedDeviceString(vr::TrackedDeviceIndex_t unDevice, vr::TrackedDeviceProperty prop);
 	string GetTrackedDeviceString(vr::TrackedDeviceIndex_t unDevice, vr::TrackedDeviceProperty prop, vr::TrackedPropertyError *pError);
 	
@@ -45,26 +46,31 @@ protected:
 
 public:
 	vrMain();
+
 	//------------- メソッド ----------------
+	// 初期化・終了関係
 	bool Init();
 	bool DxInit();
+	bool CreateAllShaders();
 	void Shutdown();
 	void MainLoop();
 
+	// イベント関係
 	bool HandleInput();
 	void SetupRenderModelForTrackedDevice(vr::TrackedDeviceIndex_t unTrackeDeviceIndex);
-	void RenderFrame();
+	void ProcessVREvent(const vr::VREvent_t &event);
 
+	// レンダリング関係
+	void RenderFrame();
 	void RenderStereoTargets();
 	void RenderDistortion();
 	void RenderScene(vr::Hmd_Eye eye);
 	
+	// 
 	void UpdateHMDMatrixPose();
 
-	void ProcessVREvent(const vr::VREvent_t &event);
-
+	// 
 	RenderModel *FindOrLoadRenderModel(const char *pRenderModelName);
 
-	bool CreateAllShaders();
 	//-------------- パラメータ -------------
 };
