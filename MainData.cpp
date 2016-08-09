@@ -144,6 +144,7 @@ void vrMain::UpdateHMDMatrixPose() {
 	for (int nDevice = 0; nDevice < vr::k_unMaxTrackedDeviceCount; ++nDevice) {
 		if (m_rTrackedDevicePose[nDevice].bPoseIsValid) {
 			m_ValidPoseCount++;
+			
 			// TODO : ŽÀ‘•‚Æ—‰ð
 		}
 	}

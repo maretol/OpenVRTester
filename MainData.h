@@ -3,6 +3,7 @@
 #include <openvr.h>
 #include <DxLib.h>
 #include <string>
+
 #include <vector>
 #include "RenderModel.h"
 
@@ -47,7 +48,7 @@ protected:
 
 	//-------------- ƒpƒ‰ƒ[ƒ^ -------------
 	vr::IVRSystem *hmd;
-
+	Matrix4 hoge;
 
 public:
 	vrMain();
