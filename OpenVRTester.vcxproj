@@ -158,18 +158,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="MainData.cpp" />
-    <ClCompile Include="Matrix.cpp" />
-    <ClCompile Include="RenderModel.cpp" />
+    <ClCompile Include="Source\cpp\MainData.cpp" />
+    <ClCompile Include="Source\cpp\Matrix.cpp" />
+    <ClCompile Include="Source\cpp\RenderModel.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MainData.h" />
-    <ClInclude Include="Matrix.h" />
-    <ClInclude Include="RenderModel.h" />
-    <ClInclude Include="Vectors.h" />
+    <ClInclude Include="Source\h\MainData.h" />
+    <ClInclude Include="Source\h\Matrix.h" />
+    <ClInclude Include="Source\h\RenderModel.h" />
+    <ClInclude Include="Source\h\Vectors.h" />
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="VertexShader.hlsl">
+    <FxCompile Include="Source\hlsl\VertexShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>

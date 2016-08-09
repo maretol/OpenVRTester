@@ -21,32 +21,32 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MainData.cpp">
+    <ClCompile Include="Source\cpp\RenderModel.cpp">
+      <Filter>ソース ファイル\Generics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\cpp\MainData.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Matrix.cpp">
-      <Filter>ソース ファイル\Generics</Filter>
-    </ClCompile>
-    <ClCompile Include="RenderModel.cpp">
+    <ClCompile Include="Source\cpp\Matrix.cpp">
       <Filter>ソース ファイル\Generics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MainData.h">
+    <ClInclude Include="Source\h\MainData.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="RenderModel.h">
+    <ClInclude Include="Source\h\Matrix.h">
       <Filter>ヘッダー ファイル\Generics</Filter>
     </ClInclude>
-    <ClInclude Include="Vectors.h">
+    <ClInclude Include="Source\h\RenderModel.h">
       <Filter>ヘッダー ファイル\Generics</Filter>
     </ClInclude>
-    <ClInclude Include="Matrix.h">
+    <ClInclude Include="Source\h\Vectors.h">
       <Filter>ヘッダー ファイル\Generics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="VertexShader.hlsl">
+    <FxCompile Include="Source\hlsl\VertexShader.hlsl">
       <Filter>ソース ファイル</Filter>
     </FxCompile>
   </ItemGroup>
