@@ -159,11 +159,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="MainData.cpp" />
+    <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="RenderModel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainData.h" />
+    <ClInclude Include="Matrix.h" />
     <ClInclude Include="RenderModel.h" />
+    <ClInclude Include="Vectors.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="VertexShader.hlsl">
