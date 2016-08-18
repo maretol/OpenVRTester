@@ -86,5 +86,53 @@ struct Vector3 {
 	float&   operator[](int index);
 };
 
+struct Vector4 {
+	float x;
+	float y;
+	float z;
+	float w;
+
+	Vector4() :x(0), y(0), z(0), w(0) {};
+	Vector4(float x, float y, float z, float w) :x(x), y(y), z(z), w(w) {};
+
+	// util functions
+	void     set(float x, float y, float z, float w);
+	float    length() const;
+	float    distance(const Vector4& vec) const;
+	Vector4& normalize();
+	float    dot(const Vector4& vec)const;
+	bool     equal(const Vector4& vec, float e) const;
+
+	/// operators
+	Vector4  operator-() const;
+	Vector4  operator+(const Vector4& rhs) const;
+	Vector4  operator-(const Vector4& rhs) const;
+	Vector4& operator+=(const Vector4& rhs);
+	Vector4& operator-=(const Vector4& rhs);
+	Vector4  operator*(const float scale) const;
+	Vector4  operator*(const Vector4& rhs) const;
+	Vector4& operator*=(const float scale) const;
+	Vector4& operator*=(const Vector4& rhs);
+	Vector4  operator/(const float scale) const;
+	Vector4& operator/=(const float scale);
+	bool     operator==(const Vector4& rhs) const;
+	bool     operator!=(const Vector4& rhs) const;
+	bool     operator<(const Vector4& rhs) const;
+	float    operator[](int index) const;
+	float&   operator[](int index);
+
+	friend Vector4 operator*(const float a, const Vector4 vec);
+	friend std::ostream operator<<(std::ostream& os, const Vector4& vec);
+};
+
+// inline functions for Vector2
+
+inline Vector2 Vector2::operator-() const {
+	return Vector2(-x, -y);
+}
+
+inline Vector2 Vector2::operator+(const Vector2& rhs) const {
+	return Vector2(x + rhs.x, y + rhs.y);
+}
 
 #endif // !VECTORS_H_DEF
